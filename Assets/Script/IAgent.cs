@@ -7,23 +7,10 @@ using UnityEngine;
 
 namespace Assets.Script
 {
-    public class IAgent
+    interface IAgent
     {
-        public float viewRadius;
-        [Range(0,180)]
-        public float viewAngle;
-
-        public void moveTo(Vector3 target)
-        {
-
-        }
-        public bool Dectection() {
-
-            return false;
-        }
-        public void Fire() {
-            //play animation
-        }
-
+        void moveTo(Vector3 target);
+        bool Dectection();
+        void Fire();
     }
 }
