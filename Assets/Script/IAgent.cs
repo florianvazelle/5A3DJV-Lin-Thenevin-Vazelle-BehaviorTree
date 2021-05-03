@@ -9,9 +9,21 @@ namespace Assets.Script
 {
     class IAgent
     {
-        public void moveTo(Vector3 target);
-        public bool Dectection(float angle);
-        public void Fire();
+        public float viewRadius;
+        [Range(0,180)]
+        public float viewAngle;
+
+        public void moveTo(Vector3 target)
+        {
+
+        }
+        public bool Dectection() {
+
+            return false;
+        }
+        public void Fire() {
+            //play animation
+        }
 
     }
 }

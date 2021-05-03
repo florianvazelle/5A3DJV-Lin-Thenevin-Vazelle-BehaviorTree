@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Script;
 
-public interface IAction
+interface IAction
 {
-    virtual bool verify(IAgent agent);
-    virtual void update(IAgent agent);
+    bool verify() { return false; }
+    void update() { }
 
 }
