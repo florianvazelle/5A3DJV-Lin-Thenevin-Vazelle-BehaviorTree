@@ -5,16 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 
+public enum State
+{
+    NOT_EXECUTED,
+    RUNNING,
+    FAILURE,
+    SUCCESS
+}
+
 public interface INode
 {
-    public enum states
-    {
-        Not_Executed,
-        Running,
-        Failure,
-        Success
-
-    };
-
-    public bool act(IAgent agent);
+    bool act(IAgent agent);
 }

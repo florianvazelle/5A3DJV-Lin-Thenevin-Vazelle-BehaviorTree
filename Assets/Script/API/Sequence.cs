@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 class Sequence : Comparator
 {
-    bool act(IAgent agent) { return false; }
-
+    bool act(IAgent agent)
+    {
+        foreach (var node in nodes)
+        {
+            if (!node.act(agent))
+            {
+                return State.FAILURE;
+            }
+        }
+        return State.SUCCESS;
+    }
 }

@@ -6,5 +6,15 @@ using System.Threading.Tasks;
 
 class Selector : Comparator
 {
-    bool act(IAgent agent) { return false; }
+    bool act(IAgent agent)
+    {
+        foreach (var node in nodes)
+        {
+            if (node.act(agent))
+            {
+                return State.SUCCESS;
+            }
+        }
+        return State.FAILURE;
+    }
 }

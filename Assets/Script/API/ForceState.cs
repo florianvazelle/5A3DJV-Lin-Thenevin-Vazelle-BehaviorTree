@@ -4,20 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class ForceState<state, T> where T : INode
+class ForceState<S, T> 
+    where S : State
+    where T : INode
 {
-
     public T instance;
 
-    public void FroceState()
+    public ForceState()
     {
-        //instance = new T ();
+        instance = new T();
     }
 
     bool act(IAgent agent)
     {
         instance.act(agent);
-        return false;
+        return S;
     }
 }
 
