@@ -6,10 +6,5 @@ using System.Threading.Tasks;
 
 class AlwaysTrue : IAction
 {
-    public bool verify(IAgent agent)
-    {
-        return true;
-    }
-
     public void update(IAgent agent) {}
 }
