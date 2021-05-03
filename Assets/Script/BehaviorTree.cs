@@ -14,7 +14,7 @@ class BehaviorTree
             bool res = true;
             foreach(IAction act in selec.sequence.actions)
             {
-                if (!(act.verify(ia)){
+                if ((!act.verify(ia))){
                     res = false;
                     break;
                 }
