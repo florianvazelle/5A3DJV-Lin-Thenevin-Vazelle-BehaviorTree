@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 class Selector
 {
-    Sequence sequence;
+    public Sequence sequence;
 }
