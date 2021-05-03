@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 class Selector : Comparator
 {
-    bool act(IAgent agent)
+    public Selector() : base() { }
+
+    public override State act()
     {
         foreach (var node in nodes)
         {
-            if (node.act(agent))
+            if (node.act() == State.SUCCESS)
             {
                 return State.SUCCESS;
             }

@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 class Sequence : Comparator
 {
-    bool act(IAgent agent)
+    public Sequence() : base() {}
+
+    public override State act()
     {
         foreach (var node in nodes)
         {
-            if (!node.act(agent))
+            if (node.act() == State.FAILURE)
             {
                 return State.FAILURE;
             }

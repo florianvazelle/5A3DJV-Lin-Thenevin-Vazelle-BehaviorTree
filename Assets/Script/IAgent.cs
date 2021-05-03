@@ -3,7 +3,8 @@ using UnityEngine;
 
 public interface IAgent
 {
-    void moveTo();
-    bool Dectection();
-    void Fire();
+    State MoveToTarget();
+    State Detection();
+    State Fire();
+    State Patrol();
 }

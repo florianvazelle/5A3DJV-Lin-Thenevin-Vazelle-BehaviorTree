@@ -15,5 +15,5 @@ public enum State
 
 public interface INode
 {
-    bool act(IAgent agent);
+    State act();
 }

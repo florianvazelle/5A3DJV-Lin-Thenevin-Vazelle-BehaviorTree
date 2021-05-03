@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 class BehaviorTree
 {
-    static void act(in Selector selector, ref IAgent agent)
+    public static void act(in Selector selector)
     {
-        selector.act(agent);
+        selector.act();
     }
 }

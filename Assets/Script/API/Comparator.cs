@@ -4,17 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class Comparator : INode
+public class Comparator : INode
 {
     public List<INode> nodes;
+
+    public Comparator()
+    {
+        nodes = new List<INode>();
+    }
 
     public void AddAction(INode node)
     {
         nodes.Add(node);
     }
 
-    public bool act(IAgent agent)
+    public virtual State act()
     {
-        throw new NotImplementedException();    
+        throw new NotImplementedException();   
     }
 }

@@ -5,20 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 
 class ForceState<S, T> 
-    where S : State
-    where T : INode
+    where T : INode, new()
 {
     public T instance;
+    public State returnState;
 
-    public ForceState()
+    public ForceState(State returnState)
     {
-        instance = new T();
+        this.returnState = returnState;
+        this.instance = new T();
     }
 
-    bool act(IAgent agent)
+    State act()
     {
-        instance.act(agent);
-        return S;
+        instance.act();
+        return returnState;
     }
 }
 

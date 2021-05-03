@@ -7,33 +7,31 @@ public class InfiltrationGame : MonoBehaviour
     public GameObject agentPatrouille;
     public Vector3 src, dst;
     private IAgent agent;
+    private Selector rootSelector;
 
     // Start is called before the first frame update
     void Start()
     {
-        agent = new AgentPatrouille(agentPatrouille, src, dst);
-        /*
-        Selector detectSelector = new Selector();
-        detectSelector.AddAction(new ActionDetect());
-        detectSelector.AddAction(new AlwaysFalse());
+        // On crée un AgentPatrol
+        agent = new AgentPatrol(agentPatrouille, src, dst);
+        
+        /* Utilisation de l'API */
+        Sequence detectActionSequence = new Sequence();
+        detectActionSequence.AddAction(new Action(agent.Detection));
+        detectActionSequence.AddAction(new Action(agent.MoveToTarget));
+        detectActionSequence.AddAction(new Action(agent.Fire));
 
-        Selector actionSelector = new Selector();
-        actionSelector.AddAction(new ActionMove());
-        actionSelector.AddAction(new ActionFire());
+        Sequence defaultSequence = new Sequence();
+        defaultSequence.AddAction(new Action(agent.Patrol));
 
-        Selector defaultSelector = new Selector();
-        defaultSelector.AddAction(new ActionPatrouille());
-        */
-        List<Selector> selectors = new List<Selector>() {
-            detectSelector,
-            actionSelector,
-            defaultSelector
-        };
+        rootSelector = new Selector();
+        rootSelector.AddAction(detectActionSequence);
+        rootSelector.AddAction(defaultSequence);
     }
 
     // Update is called once per frame
     void Update()
     {   
-        // BehaviorTree.act(agent);
+        BehaviorTree.act(in rootSelector);
     }
 }

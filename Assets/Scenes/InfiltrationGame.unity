@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 1194929028}
   - component: {fileID: 1194929032}
   m_Layer: 0
-  m_Name: AgentPatrouille
+  m_Name: AgentPatrol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -402,7 +402,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d7f12215ebc39cb8a59f2fcc887b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  angle_fov: 40
+  dist_min: 0
+  dist_max: 2
 --- !u!1 &1531470041
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-class AgentPatrouille : IAgent
+class AgentPatrol : IAgent
 {
     private GameObject gameObject;
     private Vector3 src, dst;
     private float moveSpeed = 0.01f;
 
-    public AgentPatrouille(GameObject go, Vector3 src, Vector3 dst)
+    public bool hasSeenPlayer;
+    public Vector3 targetDetected;
+
+    public AgentPatrol(GameObject go, Vector3 src, Vector3 dst)
     {
         this.gameObject = go;
         Transform transform = go.GetComponent<Transform>();
@@ -17,25 +20,18 @@ class AgentPatrouille : IAgent
         this.src = src;
         this.dst = dst;
         transform.Rotate(new Vector3(0, Vector3.Normalize(dst - transform.position).x * 90, 0));
+    
+        this.hasSeenPlayer = false;
     }
 
-    public void moveTo() {
+    public State MoveToTarget() {
         Transform transform = gameObject.GetComponent<Transform>();
-
-        if (dst.x - 0.1f <= transform.position.x &&  transform.position.x <= dst.x + 0.1f &&
-            dst.z - 0.1f <= transform.position.z && transform.position.z <= dst.z + 0.1f) {
-            Vector3 tmp = dst;
-            dst = src;
-            src = tmp;
-
-            // update rotation
-            transform.Rotate(new Vector3(0, Vector3.Normalize(dst - transform.position).x * 180, 0));
-        }
-
-        transform.position = Vector3.Lerp(transform.position, dst, moveSpeed);
+        transform.position = Vector3.Lerp(transform.position, targetDetected, moveSpeed);
+        
+        return State.SUCCESS;
     }
 
-    public bool Dectection() {
+    public State Detection() {
         Transform transform = gameObject.GetComponent<Transform>();
         FieldOfView fov = gameObject.GetComponent<FieldOfView>();
         
@@ -55,18 +51,39 @@ class AgentPatrouille : IAgent
             RaycastHit2D hit = Physics2D.Raycast(transform.position, playerDir, playerDist);
             if (!hit) // pas de mur
             {
+                hasSeenPlayer = true;
+                targetDetected = playerPos;
                 fov.material.SetColor("_Color", Color.red);
-                return true;
+                return State.SUCCESS;
             }
         }
 
+        hasSeenPlayer = false;
         fov.material.SetColor("_Color", Color.white);
-        return false;
+        return State.FAILURE;
     }
     
-    public void Fire() {
+    public State Fire() {
             FieldOfView fov = gameObject.GetComponent<FieldOfView>();
             fov.material.SetColor("_Color", Color.black);
-        // do nothing
+        return State.SUCCESS;
+    }
+
+    public State Patrol() {
+        Transform transform = gameObject.GetComponent<Transform>();
+
+        if (dst.x - 0.1f <= transform.position.x && transform.position.x <= dst.x + 0.1f &&
+            dst.z - 0.1f <= transform.position.z && transform.position.z <= dst.z + 0.1f)
+        {
+            Vector3 tmp = dst;
+            dst = src;
+            src = tmp;
+
+            // update rotation
+            transform.Rotate(new Vector3(0, Vector3.Normalize(dst - transform.position).x * 180, 0));
+        }
+
+        transform.position = Vector3.Lerp(transform.position, dst, moveSpeed);
+        return State.SUCCESS;
     }
 }
