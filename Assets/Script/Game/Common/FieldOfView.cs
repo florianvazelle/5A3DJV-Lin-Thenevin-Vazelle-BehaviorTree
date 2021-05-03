@@ -7,10 +7,10 @@ public class FieldOfView : MonoBehaviour {
     Mesh mesh;
     public Material material;
 
-    float angle_fov = 40;
+    public float angle_fov = 40;
 
-    float dist_min = 0.0f;
-    float dist_max = 2.0f;
+    public float dist_min = 0.0f;
+    public float dist_max = 2.0f;
 
     void Start()
     {

@@ -20,7 +20,9 @@ public class InfiltrationGame : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        agent.moveTo();
+        agent.Dectection();
         // BehaviorTree.act(agent);
     }
 }
