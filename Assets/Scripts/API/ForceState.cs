@@ -4,16 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class ForceState<S, T> 
+/**
+ * @brief Utilisé pour forcer le retour
+ *
+ * Pour n'importe quelle INode (Selector, Action ...) on va pouvoir
+ * retourner toujours SUCCESS ou toujours FAILURE, au choix.
+ */
+class ForceState<T> 
     where T : INode, new()
 {
-    public T instance;
-    public State returnState;
+    private T instance;
+    private State returnState;
 
-    public ForceState(State returnState)
+    public ForceState(T instance, State returnState)
     {
+        this.instance = instance;
         this.returnState = returnState;
-        this.instance = new T();
     }
 
     State act()

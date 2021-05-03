@@ -64,8 +64,7 @@ class AgentPatrol
     }
     
     public State Fire() {
-            FieldOfView fov = gameObject.GetComponent<FieldOfView>();
-            fov.material.SetColor("_Color", Color.black);
+        // TODO : jouer un son, genre "pan!"
         return State.SUCCESS;
     }
 
