@@ -5,7 +5,7 @@ using Assets.Script;
 
 public class IAction
 {
-    public virtual bool verify(IAgent);
-    public virtual void update(IAgent);
+    virtual bool verify(IAgent);
+    virtual void update(IAgent);
 
 }

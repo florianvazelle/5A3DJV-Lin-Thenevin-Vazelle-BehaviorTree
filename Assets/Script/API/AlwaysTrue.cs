@@ -8,7 +8,7 @@ namespace Assets.Script.API
 {
     class AlwaysTrue : IAction
     {
-        public virtual bool verify(IAgent)
+        public bool verify(IAgent)
         {
             return true;
 
