@@ -6,7 +6,7 @@ public class InfiltrationGame : MonoBehaviour
 {
     public GameObject agentPatrouille;
     public Vector3 src, dst;
-    private IAgent agent;
+    private AgentPatrol agent;
     private Selector rootSelector;
 
     // Start is called before the first frame update

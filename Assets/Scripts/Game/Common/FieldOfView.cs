@@ -1,12 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class FieldOfView : MonoBehaviour {
 
     int quality = 15;
     Mesh mesh;
     public Material material;
-
+    public AudioSource audioData;
     public float angle_fov = 40;
 
     public float dist_min = 0.0f;
@@ -28,6 +29,8 @@ public class FieldOfView : MonoBehaviour {
 
         mesh.uv = uv;
         mesh.normals = normals;
+        audioData = GetComponent<AudioSource>();
+        //audioData.Play(0);
     }
 
     void Update()

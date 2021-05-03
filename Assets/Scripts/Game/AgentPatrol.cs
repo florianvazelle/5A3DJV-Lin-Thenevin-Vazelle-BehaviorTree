@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 class AgentPatrol
 {
     private GameObject gameObject;
@@ -48,9 +49,11 @@ class AgentPatrol
 
         if (playerAngle <= fov.angle_fov && playerDist <= fov.dist_max)
         {
+            fov.audioData.Play(0);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, playerDir, playerDist);
             if (!hit) // pas de mur
             {
+                //Debug.Log("test");
                 hasSeenPlayer = true;
                 targetDetected = playerPos;
                 fov.material.SetColor("_Color", Color.red);
@@ -65,7 +68,7 @@ class AgentPatrol
     
     public State Fire() {
             FieldOfView fov = gameObject.GetComponent<FieldOfView>();
-            fov.material.SetColor("_Color", Color.black);
+            //fov.material.SetColor("_Color", Color.black);
         return State.SUCCESS;
     }
 
