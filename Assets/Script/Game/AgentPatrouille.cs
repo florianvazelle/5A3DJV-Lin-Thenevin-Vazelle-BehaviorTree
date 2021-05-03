@@ -29,6 +29,9 @@ class AgentPatrouille : IAgent
     }
     
     public void Fire() {
-        // do nothing
+        
+      var ObjRenderer = gameObject.GetComponent<FieldOfView>;
+
+      // do nothing
     }
 }
