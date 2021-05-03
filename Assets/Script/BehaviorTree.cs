@@ -12,9 +12,21 @@ class BehaviorTree
         foreach(Selector selec in listSelec)
         {
             bool res = true;
-            foreach(Action act in selec.sequence.actions)
+            foreach(IAction act in selec.sequence.actions)
             {
-                //if(act)
+                if (!(act.verify(ia)){
+                    res = false;
+                    break;
+                }
+            }
+
+            if (res)
+            {
+                foreach(IAction act in selec.sequence.actions)
+                {
+                    act.update(ia);
+                }
+                break;
             }
 
         }
