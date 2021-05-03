@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 class Sequence
 {
     public List<IAction> actions;
+
+    public Sequence() {
+        actions = new List<IAction>();
+    }
     
     public void AddAction(IAction action) {
         actions.Add(action);

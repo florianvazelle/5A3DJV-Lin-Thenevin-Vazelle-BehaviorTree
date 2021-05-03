@@ -12,6 +12,10 @@ public class InfiltrationGame : MonoBehaviour
     void Start()
     {
         agent = new AgentPatrouille(agentPatrouille, src, dst);
+        
+        Sequence detectSequence = new Sequence();
+        detectSequence.AddAction(new ActionDetect());
+        detectSequence.AddAction(new AlwaysFalse());
     }
 
     // Update is called once per frame
