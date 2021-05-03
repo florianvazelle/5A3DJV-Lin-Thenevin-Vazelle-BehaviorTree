@@ -11,8 +11,5 @@ class AlwaysFalse : IAction
         return false;
     }
 
-    public void update(IAgent agent)
-    {
-        
-    }
+    public void update(IAgent agent) {}
 }

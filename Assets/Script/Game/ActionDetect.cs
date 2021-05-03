@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Action_Detecte : IAction
+public class ActionDetect : IAction
 {
     public bool verify(IAgent agent) {
-        return true;
+        return agent.Dectection();
     }
 
     public void update(IAgent agent) {
-        
+        // do nothing
     }
 }

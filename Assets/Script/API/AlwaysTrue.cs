@@ -11,8 +11,5 @@ class AlwaysTrue : IAction
         return true;
     }
 
-    public void update(IAgent agent)
-    {
-        
-    }
+    public void update(IAgent agent) {}
 }
