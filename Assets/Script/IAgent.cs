@@ -3,7 +3,7 @@ using UnityEngine;
 
 public interface IAgent
 {
-    void moveTo(Vector3 target);
+    void moveTo();
     bool Dectection();
     void Fire();
 }
