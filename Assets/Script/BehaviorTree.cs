@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 class BehaviorTree
 {
-    public List<Selector> listSelec;
-    void behaviorTree(IAgent ia)
+    static void act(in List<Selector> selectors, ref IAgent agent)
     {
-        foreach(Selector selec in listSelec)
+        foreach(Selector selec in selectors)
         {
             bool res = true;
-            foreach(IAction act in selec.sequence.actions)
+            foreach(IAction act in selec.sequence)
             {
-                if ((!act.verify(ia))){
+                if (!act.verify(agent))
+                {
                     res = false;
                     break;
                 }
@@ -22,16 +22,12 @@ class BehaviorTree
 
             if (res)
             {
-                foreach(IAction act in selec.sequence.actions)
+                foreach(IAction act in selec.sequence)
                 {
-                    act.update(ia);
+                    act.update(agent);
                 }
                 break;
             }
-
         }
     }
-
-
-
 }

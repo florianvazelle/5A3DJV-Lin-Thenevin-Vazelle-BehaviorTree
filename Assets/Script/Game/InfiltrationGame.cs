@@ -13,16 +13,27 @@ public class InfiltrationGame : MonoBehaviour
     {
         agent = new AgentPatrouille(agentPatrouille, src, dst);
         
-        Sequence detectSequence = new Sequence();
-        detectSequence.AddAction(new ActionDetect());
-        detectSequence.AddAction(new AlwaysFalse());
+        Selector detectSelector = new Selector();
+        detectSelector.AddAction(new ActionDetect());
+        detectSelector.AddAction(new AlwaysFalse());
+
+        Selector actionSelector = new Selector();
+        actionSelector.AddAction(new ActionMove());
+        actionSelector.AddAction(new ActionFire());
+
+        Selector defaultSelector = new Selector();
+        defaultSelector.AddAction(new ActionPatrouille());
+
+        List<Selector> selectors = new List<Selector>() {
+            detectSelector,
+            actionSelector,
+            defaultSelector
+        };
     }
 
     // Update is called once per frame
     void Update()
     {   
-        agent.moveTo();
-        agent.Dectection();
         // BehaviorTree.act(agent);
     }
 }
