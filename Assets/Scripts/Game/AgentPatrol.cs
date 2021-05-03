@@ -20,14 +20,28 @@ class AgentPatrol
 
         this.src = src;
         this.dst = dst;
-        transform.Rotate(new Vector3(0, Vector3.Normalize(dst - transform.position).x * 90, 0));
-    
+        SetRotation(dst);
+
         this.hasSeenPlayer = false;
+    }
+
+    private void SetRotation(Vector3 target)
+    {
+        Transform transform = gameObject.GetComponent<Transform>();
+        Vector3 targetDir = (target - transform.position);
+
+        float targetAngle = Vector3.SignedAngle(targetDir, Vector3.forward, -Vector3.up);
+        transform.rotation = Quaternion.Euler(0, targetAngle, 0);
     }
 
     public State MoveToTarget() {
         Transform transform = gameObject.GetComponent<Transform>();
+
+        Vector3 playerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        playerPos = new Vector3(playerPos.x, 0, playerPos.z);
+
         transform.position = Vector3.Lerp(transform.position, targetDetected, moveSpeed);
+        SetRotation(playerPos);
         
         return State.SUCCESS;
     }
@@ -40,14 +54,18 @@ class AgentPatrol
         playerPos = new Vector3(playerPos.x, 0, playerPos.z);
 
         // find angle to player
-        Vector3 lookDir = Vector3.Normalize(dst - transform.position); 
+        Vector3 target = dst;
+        if (hasSeenPlayer) {
+            target = targetDetected;
+        }
+        Vector3 lookDir = Vector3.Normalize(target - transform.position); 
         Vector3 playerDir = (playerPos - transform.position);
         float playerAngle = Vector3.Angle(playerDir, lookDir);
 
         // find distance to player
         float playerDist = Vector3.Distance(playerPos, transform.position);
 
-        if (playerAngle <= fov.angle_fov && playerDist <= fov.dist_max)
+        if (playerAngle <= fov.angle_fov * 1.25f && playerDist <= fov.dist_max * 1.25f)
         {
             fov.audioData.Play(0);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, playerDir, playerDist);
@@ -55,7 +73,7 @@ class AgentPatrol
             {
                 //Debug.Log("test");
                 hasSeenPlayer = true;
-                targetDetected = playerPos;
+                targetDetected = playerPos - Vector3.Normalize(playerDir);
                 fov.material.SetColor("_Color", Color.red);
                 return State.SUCCESS;
             }
@@ -75,18 +93,18 @@ class AgentPatrol
     public State Patrol() {
         Transform transform = gameObject.GetComponent<Transform>();
 
-        if (dst.x - 0.1f <= transform.position.x && transform.position.x <= dst.x + 0.1f &&
-            dst.z - 0.1f <= transform.position.z && transform.position.z <= dst.z + 0.1f)
+        var margin = 0.1f;
+        if (dst.x - margin <= transform.position.x && transform.position.x <= dst.x + margin &&
+            dst.z - margin <= transform.position.z && transform.position.z <= dst.z + margin)
         {
             Vector3 tmp = dst;
             dst = src;
             src = tmp;
-
-            // update rotation
-            transform.Rotate(new Vector3(0, Vector3.Normalize(dst - transform.position).x * 180, 0));
         }
 
         transform.position = Vector3.Lerp(transform.position, dst, moveSpeed);
+        SetRotation(dst);
+        
         return State.SUCCESS;
     }
 }

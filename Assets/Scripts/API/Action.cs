@@ -8,6 +8,11 @@ public class Action : INode
 {
     private Func<State> action;
 
+    public Action()
+    {
+        this.action = null;
+    }
+
     public Action(Func<State> func)
     {
         this.action = func;
@@ -15,6 +20,9 @@ public class Action : INode
 
     public State act()
     {
+        if (action == null) {
+            throw new NotImplementedException();
+        }
         return action();
     }
 }
