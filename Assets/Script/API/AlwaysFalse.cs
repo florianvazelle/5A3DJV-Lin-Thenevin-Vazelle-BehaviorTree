@@ -4,19 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Script.API
+class AlwaysFalse : IAction
 {
-    class AlwaysFalse : IAction
+    public bool verify(IAgent agent)
     {
-        public bool verify(IAgent agent)
-        {
-            return false;
-        }
+        return false;
+    }
 
-        public void update(IAgent agent)
-        {
-            
-        }
-
+    public void update(IAgent agent)
+    {
+        
     }
 }

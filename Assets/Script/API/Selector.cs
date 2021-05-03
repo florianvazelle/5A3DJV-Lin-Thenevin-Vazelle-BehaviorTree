@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Assets.Script;
 
-namespace Assets.Script.API
+class Selector
 {
-    class Selector
-    {
-        Sequence sequence;
-
-    }
+    Sequence sequence;
 }

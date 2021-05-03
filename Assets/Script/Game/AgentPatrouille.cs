@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.Script;
 
 class AgentPatrouille : IAgent
 {
@@ -15,7 +14,7 @@ class AgentPatrouille : IAgent
     }
 
     public bool Dectection() {
-
+        return false;
     }
     
     public void Fire() {
