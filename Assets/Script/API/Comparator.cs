@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class IComparator : INode
+class Comparator : INode
 {
 
     public List<INode> nodes;
@@ -12,4 +12,6 @@ class IComparator : INode
     {
         nodes.Add(node);
     }
+
+    public bool act(IAgent agent) { return false; }
 }

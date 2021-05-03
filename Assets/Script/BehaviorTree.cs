@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 class BehaviorTree
-{
+{/*
     static void act(in List<Selector> selectors, ref IAgent agent)
     {
         foreach(Selector selec in selectors)
@@ -29,5 +29,5 @@ class BehaviorTree
                 break;
             }
         }
-    }
+    } */
 }

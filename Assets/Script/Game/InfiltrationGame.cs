@@ -12,7 +12,7 @@ public class InfiltrationGame : MonoBehaviour
     void Start()
     {
         agent = new AgentPatrouille(agentPatrouille, src, dst);
-        
+        /*
         Selector detectSelector = new Selector();
         detectSelector.AddAction(new ActionDetect());
         detectSelector.AddAction(new AlwaysFalse());
@@ -23,7 +23,7 @@ public class InfiltrationGame : MonoBehaviour
 
         Selector defaultSelector = new Selector();
         defaultSelector.AddAction(new ActionPatrouille());
-
+        */
         List<Selector> selectors = new List<Selector>() {
             detectSelector,
             actionSelector,

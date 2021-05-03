@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-interface INode
+public interface INode
 {
     public enum states
     {
@@ -16,5 +16,5 @@ interface INode
 
     };
 
-    bool act(IAgent agent);
+    public bool act(IAgent agent);
 }
