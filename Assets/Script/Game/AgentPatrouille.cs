@@ -65,9 +65,8 @@ class AgentPatrouille : IAgent
     }
     
     public void Fire() {
-        
-      var ObjRenderer = gameObject.GetComponent<FieldOfView>;
-
-      // do nothing
+            FieldOfView fov = gameObject.GetComponent<FieldOfView>();
+            fov.material.SetColor("_Color", Color.black);
+        // do nothing
     }
 }
