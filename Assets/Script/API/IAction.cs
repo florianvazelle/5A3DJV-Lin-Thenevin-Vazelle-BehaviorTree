@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Script;
 
-interface IAction
+namespace Assets.Script.API
 {
-    bool verify() { return false; }
-    void update() { }
-
+    interface IAction
+    {
+        bool verify(IAgent agent);
+        void update(IAgent agent);
+    }
 }

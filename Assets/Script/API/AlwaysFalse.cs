@@ -8,10 +8,14 @@ namespace Assets.Script.API
 {
     class AlwaysFalse : IAction
     {
-        public bool verify(IAgent)
+        public bool verify(IAgent agent)
         {
             return false;
+        }
 
+        public void update(IAgent agent)
+        {
+            
         }
 
     }

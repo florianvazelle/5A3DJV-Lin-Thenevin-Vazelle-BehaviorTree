@@ -8,10 +8,14 @@ namespace Assets.Script.API
 {
     class AlwaysTrue : IAction
     {
-        public bool verify(IAgent)
+        public bool verify(IAgent agent)
         {
             return true;
+        }
 
+        public void update(IAgent agent)
+        {
+            
         }
     }
 }

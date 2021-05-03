@@ -10,8 +10,8 @@ namespace Assets.Script.API
     class Sequence
     {
         public List<IAction> actions;
-        public void AddAction(IAction act) {
-            actions.Add(act);
+        public void AddAction(IAction action) {
+            actions.Add(action);
         }
 
     }

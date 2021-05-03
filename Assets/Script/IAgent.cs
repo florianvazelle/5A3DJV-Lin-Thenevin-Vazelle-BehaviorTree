@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Script
 {
-    class IAgent
+    public class IAgent
     {
         public float viewRadius;
         [Range(0,180)]
