@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-class AgentPatrol : IAgent
+class AgentPatrol
 {
     private GameObject gameObject;
     private Vector3 src, dst;
