@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 class BehaviorTree
 {
-    public static void act(in Selector selector)
+    public static void act(Selector selector)
     {
         selector.act();
     }
