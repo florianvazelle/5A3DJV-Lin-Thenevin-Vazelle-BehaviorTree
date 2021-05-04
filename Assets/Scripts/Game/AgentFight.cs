@@ -10,7 +10,6 @@ class AgentFight
     private int hp;
     private int oldHp;
 
-    public Vector3 targetPos;
     public AgentFight(GameObject go, Animator animator)
     {
         this.gameObject = go;
@@ -23,6 +22,7 @@ class AgentFight
     {
         if(hp != oldHp)
         {
+            //Add Shield
             oldHp = hp;
             return State.SUCCESS;
         }
