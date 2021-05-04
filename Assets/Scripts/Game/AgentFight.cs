@@ -59,6 +59,9 @@ class AgentFight
     /// </summary>
     public State Block()
     {
+        animator.ResetTrigger("PunchTrigger");
+        animator.Play("Idle");
+
         // On active le bouclier
         shield.SetActive(true);
 
