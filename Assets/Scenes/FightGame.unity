@@ -267,8 +267,10 @@ MonoBehaviour:
   agents:
   - agentGO: {fileID: 1891758070}
     animator: {fileID: 1884389018}
+    tokenGrabClip: {fileID: 0}
   - agentGO: {fileID: 2135691041}
     animator: {fileID: 2145221971}
+    tokenGrabClip: {fileID: 8300000, guid: f6d55511dcac0d4448c27ec38d8b9bb8, type: 3}
 --- !u!4 &257599657
 Transform:
   m_ObjectHideFlags: 0
