@@ -10,21 +10,23 @@ public class FightGame : MonoBehaviour
         public GameObject agentGO;
     }
 
-    public Agent agent;
-    private AgentFight agentFight;
+    public List<Agent> agents;
+    private AgentFight agentFight, player;
     private Selector rootSelector;
 
     // Start is called before the first frame update
     void Start()
     {
         // On crée un AgentFight
-        agentFight = new AgentFight(agent.agentGO);
+        agentFight = new AgentFight(agents[0].agentGO);
+        player = new AgentFight(agents[1].agentGO); // On va dire que l'agent 1 est le joueur
 
         /* Utilisation de l'API */
-        // Sequence detectActionSequence = new Sequence();
+        Sequence punchSequence = new Sequence();
         // detectActionSequence.Add(new Action(agentFight.Detection));
         // detectActionSequence.Add(new Action(agentFight.MoveToTarget));
         // detectActionSequence.Add(new Delay<Action>(new Action(agentFight.Fire), 2));
+        punchSequence.Add(new Action(new Binder<AgentFight, State>(agentFight.Punch, player).Apply));
 
         Sequence walkSequence = new Sequence();
         walkSequence.Add(new Action(agentFight.GoForward));

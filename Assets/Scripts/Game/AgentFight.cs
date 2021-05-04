@@ -16,14 +16,14 @@ class AgentFight
     public State Idle()
     {
         Animation anim = gameObject.GetComponent<Animation>();
-        anim.Play("idle");
+        animator.Play("Idle");
         return State.SUCCESS;
     }
 
     public State GoForward()
     {
         Animation anim = gameObject.GetComponent<Animation>();
-        anim.Play("walk");
+        animator.SetBool("Walk Forward", false);
         return State.SUCCESS;
     }
 }
