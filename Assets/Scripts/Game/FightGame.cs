@@ -32,8 +32,9 @@ public class FightGame : MonoBehaviour
         player = new AgentFight(agents[1].agentGO, agents[1].animator); // On va dire que l'agent 1 est le joueur
 
         /* Utilisation de l'API */
-        Sequence BlockSequence = new Sequence();
-        BlockSequence.Add(new Action(agentFight.Block));
+        
+        Sequence blockSequence = new Sequence();
+        blockSequence.Add(new Action(agentFight.Block));
 
         Sequence punchSequence = new Sequence();
         punchSequence.Add(new Action(new Binder<AgentFight, State>(agentFight.Distance, player).Apply));
@@ -46,6 +47,7 @@ public class FightGame : MonoBehaviour
         defaultSequence.Add(new Action(agentFight.Idle));
 
         rootSelector = new Selector();
+        rootSelector.Add(blockSequence);
         rootSelector.Add(punchSequence);
         rootSelector.Add(walkSequence);
         rootSelector.Add(defaultSequence);
