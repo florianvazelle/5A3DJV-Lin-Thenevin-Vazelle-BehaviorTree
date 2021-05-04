@@ -8,6 +8,7 @@ public class FightGame : MonoBehaviour
     public struct Agent
     {
         public GameObject agentGO;
+        public Animator animator;
     }
 
     public List<Agent> agents;
@@ -18,8 +19,8 @@ public class FightGame : MonoBehaviour
     void Start()
     {
         // On crée un AgentFight
-        agentFight = new AgentFight(agents[0].agentGO);
-        player = new AgentFight(agents[1].agentGO); // On va dire que l'agent 1 est le joueur
+        agentFight = new AgentFight(agents[0].agentGO, agents[0].animator);
+        player = new AgentFight(agents[1].agentGO, agents[1].animator); // On va dire que l'agent 1 est le joueur
 
         /* Utilisation de l'API */
         Sequence punchSequence = new Sequence();
