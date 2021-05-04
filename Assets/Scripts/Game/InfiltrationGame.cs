@@ -29,7 +29,7 @@ public class InfiltrationGame : MonoBehaviour
             Sequence detectActionSequence = new Sequence();
             detectActionSequence.Add(new Action(agentsPatrol[i].Detection));
             detectActionSequence.Add(new Action(agentsPatrol[i].MoveToTarget));
-            detectActionSequence.Add(new Delay<Action>(new Action(agentsPatrol[i].Fire)));
+            detectActionSequence.Add(new Delay<Action>(new Action(agentsPatrol[i].Fire), 2));
 
             Sequence defaultSequence = new Sequence();
             defaultSequence.Add(new Action(agentsPatrol[i].Patrol));
