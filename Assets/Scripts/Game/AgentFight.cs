@@ -7,21 +7,18 @@ using UnityEngine;
 /// </summary>
 class AgentFight
 {
-    private Animator animator;
-    private GameObject gameObject;
-    private GameObject shield;
-    private int hp;
-    private int oldHp;
-
     private const float minDistToPunch = 2.5f;
+
+    private Animator animator;
+    private GameObject gameObject, shield;
+    private int hp, oldHp;
 
     public AgentFight(GameObject go, Animator animator)
     {
         this.gameObject = go;
         this.animator = animator;
-        this.shield = getShield();
-        hp = 100;
-        oldHp = 100;
+        this.shield = GetShield();
+        this.hp = this.oldHp = 100;
     }
 
     /// <summary>
@@ -36,6 +33,16 @@ class AgentFight
         Transform targetTransform = agent.gameObject.GetComponent<Transform>();
 
         return Vector3.Distance(targetTransform.position, transform.position);
+    }
+
+    /// <summary>
+    /// Helper pour récupérer le GameObject correspondant au bouclier
+    /// </summary>
+    private GameObject GetShield()
+    {
+        GameObject ChildGameObject = gameObject.transform.GetChild(0).gameObject;
+        GameObject SubChildGameObject = ChildGameObject.transform.GetChild(0).gameObject;
+        return SubChildGameObject;
     }
 
     /// <summary>
@@ -73,10 +80,11 @@ class AgentFight
 
         // On refait le calcule de distance
         float distance = GetDistance(agent);
+
+        // Si l'agent est toujours a porté
         if (distance < minDistToPunch)
         {
-            // Si l'agent est toujours a porté
-            // On lance l'animation
+            // On lance l'animation d'attaque
             animator.SetTrigger("PunchTrigger");
             // On baisse les hp de l'adversaire
             agent.hp -= 10;
@@ -87,31 +95,27 @@ class AgentFight
     }
 
     /// <summary>
-    /// Action par défaut, l'agent attend, on lance l'animation Idle 
+    /// Action par défaut, l'agent attend
     /// </summary>
     public State Idle()
     {
+        // on lance l'animation Idle 
         animator.Play("Idle");
         return State.SUCCESS;
     }
 
     /// <summary>
-    /// Action de déplacement, on lance l'animation de marche 
+    /// Action de déplacement
     /// </summary>
     public State GoForward()
     {
+        // On lance l'animation de marche 
         animator.SetBool("Walk Forward", true);
+        
         // Petit trik pour s'assurer que l'agent reste sur l'axe X
         Transform transform = gameObject.GetComponent<Transform>();
         transform.position = new Vector3(transform.position.x, 0, 0);
+        
         return State.SUCCESS;
-    }
-
-    private GameObject getShield()
-    {
-        GameObject ChildGameObject = gameObject.transform.GetChild(0).gameObject;
-        //Debug.Log(ChildGameObject.transform.name);
-		GameObject  SubChildGameObject = ChildGameObject.transform.GetChild(0).gameObject;
-        return SubChildGameObject;
     }
 }
