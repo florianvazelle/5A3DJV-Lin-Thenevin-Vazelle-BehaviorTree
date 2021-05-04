@@ -12,6 +12,7 @@ class AgentFight
     private Animator animator;
     private GameObject gameObject, shield;
     private int hp, oldHp;
+    private int numBlock;
 
     public AgentFight(GameObject go, Animator animator)
     {
@@ -46,16 +47,42 @@ class AgentFight
     }
 
     /// <summary>
-    /// Action de défense, on va lancer l'animation de blocage des coups si on a perdu de la vie
+    /// Condition de perte de vie, retourne SUCCESS si l'agent a perdu de la vie
+    /// </summary>
+    public State Bleed()
+    {
+        return (hp != oldHp) ? State.SUCCESS : State.FAILURE;
+    }
+
+    /// <summary>
+    /// Action de défense, on va lancer l'animation de blocage des coups
     /// </summary>
     public State Block()
     {
-        if (hp != oldHp)
+        // On active le bouclier
+        shield.SetActive(true);
+
+        numBlock++;
+        if (numBlock > 500)
         {
+            numBlock = 0;
+            
+            // On actualise nos hp
             oldHp = hp;
-            return State.SUCCESS;
         }
-        return State.FAILURE;
+
+        return State.SUCCESS;
+    }
+
+    /// <summary>
+    /// Action de un-défense, on va enlever le bouclier
+    /// </summary>
+    public State UnBlock()
+    {
+        // On désactive le bouclier
+        shield.SetActive(false);
+
+        return State.SUCCESS;
     }
 
     /// <summary>

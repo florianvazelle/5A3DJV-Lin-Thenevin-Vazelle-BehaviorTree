@@ -34,7 +34,11 @@ public class FightGame : MonoBehaviour
         /* Utilisation de l'API */
         
         Sequence blockSequence = new Sequence();
+        blockSequence.Add(new Action(agentFight.Bleed));
         blockSequence.Add(new Action(agentFight.Block));
+
+        Sequence unblockSequence = new Sequence();
+        unblockSequence.Add(new ForceState<Action>(new Action(agentFight.UnBlock), State.FAILURE));
 
         Sequence punchSequence = new Sequence();
         punchSequence.Add(new Action(new Binder<AgentFight, State>(agentFight.Distance, player).Apply));
@@ -48,6 +52,7 @@ public class FightGame : MonoBehaviour
 
         rootSelector = new Selector();
         rootSelector.Add(blockSequence);
+        rootSelector.Add(unblockSequence);
         rootSelector.Add(punchSequence);
         rootSelector.Add(walkSequence);
         rootSelector.Add(defaultSequence);
@@ -89,6 +94,11 @@ public class FightGame : MonoBehaviour
         if (GUI.Button(new Rect(25, 110, 100, 30), "Block"))
         {
             player.Block();
+        }
+
+        if (GUI.Button(new Rect(25, 140, 100, 30), "UnBlock"))
+        {
+            player.UnBlock();
         }
     }
 }
