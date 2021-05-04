@@ -26,12 +26,16 @@ public class FightGame : MonoBehaviour
         // detectActionSequence.Add(new Action(agentFight.MoveToTarget));
         // detectActionSequence.Add(new Delay<Action>(new Action(agentFight.Fire), 2));
 
-        // Sequence defaultSequence = new Sequence();
-        // defaultSequence.Add(new Action(agentFight.Patrol));
+        Sequence walkSequence = new Sequence();
+        walkSequence.Add(new Action(agentFight.GoForward));
+
+        Sequence defaultSequence = new Sequence();
+        defaultSequence.Add(new Action(agentFight.Idle));
 
         rootSelector = new Selector();
         // rootSelector.Add(detectActionSequence);
-        // rootSelector.Add(defaultSequence);
+        rootSelector.Add(walkSequence);
+        rootSelector.Add(defaultSequence);
     }
 
     // Update is called once per frame
