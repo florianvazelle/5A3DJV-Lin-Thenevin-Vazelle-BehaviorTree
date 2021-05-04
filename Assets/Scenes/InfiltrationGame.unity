@@ -224,7 +224,6 @@ GameObject:
   - component: {fileID: 933124318}
   - component: {fileID: 933124317}
   - component: {fileID: 933124316}
-  - component: {fileID: 933124315}
   - component: {fileID: 933124314}
   m_Layer: 0
   m_Name: AgentPatrol (1)
@@ -251,19 +250,6 @@ MonoBehaviour:
   angle_fov: 40
   dist_min: 0
   dist_max: 2
---- !u!65 &933124315
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 933124313}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &933124316
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -408,6 +394,99 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &1015369228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1015369232}
+  - component: {fileID: 1015369231}
+  - component: {fileID: 1015369230}
+  - component: {fileID: 1015369229}
+  m_Layer: 0
+  m_Name: Wall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1015369229
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015369228}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1015369230
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015369228}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 449f59927e71a0097bcc5eb2d563afc3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1015369231
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015369228}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1015369232
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015369228}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: 0, z: 3}
+  m_LocalScale: {x: 5, y: 1, z: 0.5}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1185392573
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +498,6 @@ GameObject:
   - component: {fileID: 1185392578}
   - component: {fileID: 1185392577}
   - component: {fileID: 1185392576}
-  - component: {fileID: 1185392575}
   - component: {fileID: 1185392574}
   m_Layer: 0
   m_Name: AgentPatrol (3)
@@ -446,19 +524,6 @@ MonoBehaviour:
   angle_fov: 40
   dist_min: 0
   dist_max: 2
---- !u!65 &1185392575
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185392573}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1185392576
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -531,7 +596,6 @@ GameObject:
   - component: {fileID: 1194929031}
   - component: {fileID: 1194929030}
   - component: {fileID: 1194929029}
-  - component: {fileID: 1194929028}
   - component: {fileID: 1194929032}
   m_Layer: 0
   m_Name: AgentPatrol (0)
@@ -540,19 +604,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1194929028
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1194929027}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1194929029
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -629,9 +680,9 @@ MonoBehaviour:
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   newMaterial: {fileID: 0}
   tokenGrabClip: {fileID: 8300000, guid: 5757ee3f0f10a0044a78a2e4bda9520f, type: 3}
-  angle_fov: 40
+  angle_fov: 60
   dist_min: 0
-  dist_max: 2
+  dist_max: 3
 --- !u!1 &1531470041
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +694,6 @@ GameObject:
   - component: {fileID: 1531470046}
   - component: {fileID: 1531470045}
   - component: {fileID: 1531470044}
-  - component: {fileID: 1531470043}
   - component: {fileID: 1531470042}
   m_Layer: 0
   m_Name: Player
@@ -665,19 +715,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
---- !u!65 &1531470043
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1531470041}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1531470044
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -806,7 +843,6 @@ GameObject:
   - component: {fileID: 1666992490}
   - component: {fileID: 1666992489}
   - component: {fileID: 1666992488}
-  - component: {fileID: 1666992487}
   - component: {fileID: 1666992486}
   m_Layer: 0
   m_Name: AgentPatrol (2)
@@ -833,19 +869,6 @@ MonoBehaviour:
   angle_fov: 40
   dist_min: 0
   dist_max: 2
---- !u!65 &1666992487
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1666992485}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1666992488
 MeshRenderer:
   m_ObjectHideFlags: 0
