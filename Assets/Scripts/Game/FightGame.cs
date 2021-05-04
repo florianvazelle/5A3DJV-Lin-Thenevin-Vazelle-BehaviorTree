@@ -48,4 +48,35 @@ public class FightGame : MonoBehaviour
     {
         BehaviorTree.act(rootSelector);
     }
+
+    void OnGUI()
+    {
+        if (GUI.RepeatButton(new Rect(25, 20, 100, 30), "Walk Forward"))
+        {
+            agents[1].animator.SetBool("Walk Forward", true);
+        }
+        else
+        {
+            agents[1].animator.SetBool("Walk Forward", false);
+        }
+
+        if (GUI.RepeatButton(new Rect(25, 50, 100, 30), "Walk Backward"))
+        {
+            agents[1].animator.SetBool("Walk Backward", true);
+        }
+        else
+        {
+            agents[1].animator.SetBool("Walk Backward", false);
+        }
+
+        if (GUI.Button(new Rect(25, 80, 100, 30), "Punch"))
+        {
+            player.Punch(agentFight);
+        }
+
+        if (GUI.Button(new Rect(25, 110, 100, 30), "Block"))
+        {
+            player.Block();
+        }
+    }
 }

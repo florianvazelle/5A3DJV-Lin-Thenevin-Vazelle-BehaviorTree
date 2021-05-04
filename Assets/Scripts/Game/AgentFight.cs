@@ -21,7 +21,6 @@ class AgentFight
 
     public State Block()
     {
-        
         if(hp != oldHp)
         {
             oldHp = hp;
@@ -74,7 +73,7 @@ class AgentFight
     {
         animator.SetBool("Walk Forward", true);
         Transform transform = gameObject.GetComponent<Transform>();
-        // transform.position = new Vector3(0, transform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x, 0, 0);
         return State.SUCCESS;
     }
 }
