@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// INode d'action, permet de joué une action attaché lors de la construction de l'objet
+/// </summary>
 public class Action : INode
 {
     private Func<State> action;

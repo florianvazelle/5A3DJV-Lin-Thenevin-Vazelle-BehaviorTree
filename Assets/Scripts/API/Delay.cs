@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-/**
- * @brief Utilisé pour attendre avant de refaire une action
- */
+/// <summary>
+/// INode de spécification Delay, ici on spécifie une INode (Action, Selector ...) 
+/// pour attendre un certain temps, avant de refaire cette action
+/// </summary>
 class Delay<T> : INode
     where T : INode
 {

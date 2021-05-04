@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// INode de comparaison AND, la comparaison est que lors de la première INode failure, on arrète
+/// </summary>
 class Sequence : Comparator
 {
     public Sequence() : base() {}

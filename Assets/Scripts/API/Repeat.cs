@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// INode de spécification Repeat, ici on spécifie une INode (Action, Selector ...) 
+/// que l'on aimerait répéter un certain nombre
+/// </summary>
 class Repeat<T> : INode
     where T : INode
 {

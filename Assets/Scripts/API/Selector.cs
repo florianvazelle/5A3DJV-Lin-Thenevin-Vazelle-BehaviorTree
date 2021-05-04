@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// INode de comparaison OR, la comparaison est que lors de la première INode success, on arrète
+/// </summary>
 class Selector : Comparator
 {
     public Selector() : base() { }

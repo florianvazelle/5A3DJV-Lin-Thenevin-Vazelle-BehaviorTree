@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// INode de spécification Retry, ici on spécifie une INode (Action, Selector ...) 
+/// que l'on aimerait retenté un certain nombre, si l'action échoue
+/// </summary>
 class Retry<T> : INode
     where T : INode
 {

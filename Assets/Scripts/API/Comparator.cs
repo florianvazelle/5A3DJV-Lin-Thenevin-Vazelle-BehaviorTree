@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// INode de comparaison, c'est une classe parent qui permet d'avoir plusieurs INode et le but
+/// et d'hériter cette classe pour faire un traitement différent sur l'ensemble de ces nodes
+/// </summary>
 public class Comparator : INode
 {
     public List<INode> nodes;

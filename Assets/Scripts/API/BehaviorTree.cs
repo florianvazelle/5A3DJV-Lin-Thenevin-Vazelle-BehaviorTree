@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 class BehaviorTree
 {
+    /// <summary>
+    /// Lance l'exploration de notre arbre de comportement, depuis une INode root
+    /// </summary>
+    /// <param name="selector">
+    /// L'INode root de notre Behavior Tree
+    /// </param>
     public static void act(Selector selector)
     {
         selector.act();
