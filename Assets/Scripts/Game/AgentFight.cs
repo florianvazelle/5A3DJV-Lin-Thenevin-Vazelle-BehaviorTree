@@ -8,6 +8,7 @@ class AgentFight
     private Animator animator;
     private GameObject gameObject;
     private int hp;
+    private int oldHp;
 
     public Vector3 targetPos;
     public AgentFight(GameObject go, Animator animator)
@@ -15,13 +16,15 @@ class AgentFight
         this.gameObject = go;
         this.animator = animator;
         hp = 100;
+        oldHp = 100;
     }
 
     public State Block()
     {
         
-        if(newHP != oldHP)
+        if(hp != oldHp)
         {
+            oldHp = hp;
             return State.SUCCESS;
         }
         return State.FAILURE;
@@ -45,6 +48,7 @@ class AgentFight
         if ((distance) < 2)
         {
             //add animation
+            animator.SetTrigger("PunchTrigger");
             agent.hp -= 10;
             return State.SUCCESS;
         }
