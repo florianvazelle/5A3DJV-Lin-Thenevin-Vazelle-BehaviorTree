@@ -19,6 +19,7 @@ public class FightGame : MonoBehaviour
     {
         public GameObject agentGO;
         public Animator animator;
+        public AudioClip tokenGrabClip;
     }
 
     public List<Agent> agents;
@@ -28,8 +29,8 @@ public class FightGame : MonoBehaviour
     void Start()
     {
         // On crée les deux AgentFight
-        agentFight = new AgentFight(agents[0].agentGO, agents[0].animator);
-        player = new AgentFight(agents[1].agentGO, agents[1].animator); // On va dire que l'agent 1 est le joueur
+        agentFight = new AgentFight(agents[0].agentGO, agents[0].animator, agents[0].tokenGrabClip);
+        player = new AgentFight(agents[1].agentGO, agents[1].animator, agents[1].tokenGrabClip); // On va dire que l'agent 1 est le joueur
 
         /* Utilisation de l'API */
         

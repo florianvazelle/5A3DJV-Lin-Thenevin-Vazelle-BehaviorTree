@@ -13,13 +13,27 @@ class AgentFight
     private GameObject gameObject, shield;
     private int hp, oldHp;
     private int numBlock;
+    public AudioSource tokenGrab;
+    public AudioClip m_tokenGrabClip;
 
-    public AgentFight(GameObject go, Animator animator)
+    public AgentFight(GameObject go, Animator animator, AudioClip tokenGrabClip)
     {
         this.gameObject = go;
         this.animator = animator;
         this.shield = GetShield();
         this.hp = this.oldHp = 100;
+        this.tokenGrab = AddAudio(tokenGrabClip, false, false, 0.5f);
+        m_tokenGrabClip = tokenGrabClip;
+    }
+    
+    private AudioSource AddAudio(AudioClip clip, bool isLoop, bool isPlayAwake, float vol)
+    {
+        AudioSource newAudio = gameObject.AddComponent<AudioSource>() as AudioSource;
+        newAudio.clip = clip;
+        newAudio.loop = isLoop;
+        newAudio.playOnAwake = isPlayAwake;
+        newAudio.volume = vol;
+        return newAudio;
     }
 
     /// <summary>
@@ -115,6 +129,7 @@ class AgentFight
         if (distance < minDistToPunch)
         {
             // On lance l'animation d'attaque
+            tokenGrab.PlayOneShot(m_tokenGrabClip);
             animator.SetTrigger("PunchTrigger");
             // On baisse les hp de l'adversaire
             agent.hp -= 10;
