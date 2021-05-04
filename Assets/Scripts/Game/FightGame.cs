@@ -27,6 +27,7 @@ public class FightGame : MonoBehaviour
         // detectActionSequence.Add(new Action(agentFight.Detection));
         // detectActionSequence.Add(new Action(agentFight.MoveToTarget));
         // detectActionSequence.Add(new Delay<Action>(new Action(agentFight.Fire), 2));
+        punchSequence.Add(new Action(new Binder<AgentFight, State>(agentFight.Distance, player).Apply));
         punchSequence.Add(new Action(new Binder<AgentFight, State>(agentFight.Punch, player).Apply));
 
         Sequence walkSequence = new Sequence();
@@ -37,6 +38,7 @@ public class FightGame : MonoBehaviour
 
         rootSelector = new Selector();
         // rootSelector.Add(detectActionSequence);
+        rootSelector.Add(punchSequence);
         rootSelector.Add(walkSequence);
         rootSelector.Add(defaultSequence);
     }

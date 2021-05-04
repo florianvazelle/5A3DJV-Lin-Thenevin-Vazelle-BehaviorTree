@@ -28,24 +28,32 @@ class AgentFight
             return State.SUCCESS;
         }
         return State.FAILURE;
-    }    
-    public State Punch(AgentFight agent)
+    }
+
+    private float GetDistance(AgentFight agent)
     {
         Transform transform = gameObject.GetComponent<Transform>();
-        targetPos = GameObject.Find("Enemie").GetComponent<Transform>().position;
+        Transform targetTransform = agent.gameObject.GetComponent<Transform>();
 
-        float distance;
-        if(transform.position.x > targetPos.x)
-        {
-            distance = transform.position.x - targetPos.x;
-        }
-        else
-        {
-            distance = targetPos.x - transform.position.x;
-        }
+        return Vector3.Distance(targetTransform.position, transform.position);
+    }
 
-        
-        if ((distance) < 2)
+    const float minDistToPunch = 2.5f;
+
+    public State Distance(AgentFight agent)
+    {
+        float distance = GetDistance(agent);
+        Debug.Log(distance);
+        return (distance < minDistToPunch) ? State.SUCCESS : State.FAILURE;
+    }
+
+    public State Punch(AgentFight agent)
+    {
+        animator.SetBool("Walk Forward", false);
+
+        float distance = GetDistance(agent);
+
+        if (distance < minDistToPunch)
         {
             //add animation
             animator.SetTrigger("PunchTrigger");
@@ -64,7 +72,9 @@ class AgentFight
 
     public State GoForward()
     {
-        animator.SetBool("Walk Forward", false);
+        animator.SetBool("Walk Forward", true);
+        Transform transform = gameObject.GetComponent<Transform>();
+        // transform.position = new Vector3(0, transform.position.y, transform.position.z);
         return State.SUCCESS;
     }
 }
