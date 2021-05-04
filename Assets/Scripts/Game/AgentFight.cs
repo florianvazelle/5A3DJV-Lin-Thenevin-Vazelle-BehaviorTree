@@ -7,6 +7,7 @@ class AgentFight
 {
     private Animator animator;
     private GameObject gameObject;
+    private GameObject shield;
     private int hp;
     private int oldHp;
 
@@ -14,6 +15,7 @@ class AgentFight
     {
         this.gameObject = go;
         this.animator = animator;
+        this.shield = getShield();
         hp = 100;
         oldHp = 100;
     }
@@ -22,7 +24,7 @@ class AgentFight
     {
         if(hp != oldHp)
         {
-            //Add Shield
+            shield.SetActive(true);
             oldHp = hp;
             return State.SUCCESS;
         }
@@ -42,7 +44,7 @@ class AgentFight
     public State Distance(AgentFight agent)
     {
         float distance = GetDistance(agent);
-        Debug.Log(distance);
+        //Debug.Log(distance);
         return (distance < minDistToPunch) ? State.SUCCESS : State.FAILURE;
     }
 
@@ -75,5 +77,13 @@ class AgentFight
         Transform transform = gameObject.GetComponent<Transform>();
         transform.position = new Vector3(transform.position.x, 0, 0);
         return State.SUCCESS;
+    }
+
+    private GameObject getShield()
+    {
+        GameObject ChildGameObject = gameObject.transform.GetChild(0).gameObject;
+        //Debug.Log(ChildGameObject.transform.name);
+		GameObject  SubChildGameObject = ChildGameObject.transform.GetChild(0).gameObject;
+        return SubChildGameObject;
     }
 }

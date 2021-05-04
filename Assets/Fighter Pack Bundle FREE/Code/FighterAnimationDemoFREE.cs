@@ -10,6 +10,7 @@ public class FighterAnimationDemoFREE : MonoBehaviour {
 	private Quaternion resetRot;
 	private GameObject cam;
 	private GameObject fighter;
+	private GameObject shield;
 
 	void Start()
 	{
@@ -19,6 +20,11 @@ public class FighterAnimationDemoFREE : MonoBehaviour {
 		resetRot = defaultCamTransform.rotation;
 		fighter = GameObject.FindWithTag("Player");
 		fighter.transform.position = new Vector3(0,0,0);
+		shield = setShield();
+		if(shield == null){
+			Debug.Log("no shield found");
+			return;
+		}
 	}
 
 	void OnGUI () 
@@ -56,10 +62,19 @@ public class FighterAnimationDemoFREE : MonoBehaviour {
 
 		if (GUI.Button (new Rect (25, 110, 100, 30), "Block")) 
 		{
-			GameObject  ChildGameObject = fighter.transform.GetChild(0).gameObject;
-			for (int i = 0; i < ChildGameObject.transform.childCount - 1; i++) {
-				GameObject  SubChildGameObject = ChildGameObject.transform.GetChild(i).gameObject;
+			shield.SetActive(true);
+		}
+	}
+
+	GameObject setShield() {
+		GameObject  ChildGameObject = fighter.transform.GetChild(0).gameObject;
+		for (int i = 0; i < ChildGameObject.transform.childCount - 1; i++) {
+			GameObject  SubChildGameObject = ChildGameObject.transform.GetChild(i).gameObject;
+			if(SubChildGameObject.transform.name == "Mesh_Berserker") {
+				GameObject SubSubChildGameObject = SubChildGameObject.transform.GetChild(0).gameObject;
+				return SubSubChildGameObject;
 			}
 		}
+		return null;
 	}
 }
