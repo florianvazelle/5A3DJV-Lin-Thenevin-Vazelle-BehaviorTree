@@ -24,7 +24,6 @@ class Delay<T> : INode
 
         TimeSpan tmElapsed = EndAt - StartAt;
         float elapsedTime = (float)Math.Round(tmElapsed.TotalSeconds, 0, MidpointRounding.ToEven);
-        Debug.Log(elapsedTime);
         if (elapsedTime < 2) {
             return State.SUCCESS;
         } else {
