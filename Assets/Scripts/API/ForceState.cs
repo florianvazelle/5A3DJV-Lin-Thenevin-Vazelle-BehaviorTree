@@ -10,7 +10,7 @@ using System.Threading.Tasks;
  * Pour n'importe quelle INode (Selector, Action ...) on va pouvoir
  * retourner toujours SUCCESS ou toujours FAILURE, au choix.
  */
-class ForceState<T> 
+class ForceState<T> : INode
     where T : INode, new()
 {
     private T instance;
@@ -22,7 +22,7 @@ class ForceState<T>
         this.returnState = returnState;
     }
 
-    State act()
+    public State act()
     {
         instance.act();
         return returnState;

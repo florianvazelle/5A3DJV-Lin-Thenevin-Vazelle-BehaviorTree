@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class Repeat<T>
+class Repeat<T> : INode
     where T : INode
 {
     private T instance;
@@ -16,7 +16,7 @@ class Repeat<T>
         this.repeatCount = repeatCount;
     }
 
-    State act()
+    public State act()
     {
         int i = 0;
         State res;

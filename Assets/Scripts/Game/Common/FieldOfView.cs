@@ -6,8 +6,8 @@ public class FieldOfView : MonoBehaviour {
 
     int quality = 15;
     Mesh mesh;
-    public Material material;
-    public AudioSource audioData;
+    public Material material, newMaterial;
+    public AudioClip tokenGrabClip;
     public float angle_fov = 40;
 
     public float dist_min = 0.0f;
@@ -15,6 +15,8 @@ public class FieldOfView : MonoBehaviour {
 
     void Start()
     {
+        newMaterial = new Material(material);
+
         mesh = new Mesh();
         mesh.vertices = new Vector3[4 * quality];   // Could be of size [2 * quality + 2] if circle segment is continuous
         mesh.triangles = new int[3 * 2 * quality];
@@ -29,8 +31,6 @@ public class FieldOfView : MonoBehaviour {
 
         mesh.uv = uv;
         mesh.normals = normals;
-        audioData = GetComponent<AudioSource>();
-        //audioData.Play(0);
     }
 
     void Update()
@@ -94,7 +94,7 @@ public class FieldOfView : MonoBehaviour {
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         
-        Graphics.DrawMesh(mesh, Vector3.zero, Quaternion.identity, material, 0);
+        Graphics.DrawMesh(mesh, Vector3.zero, Quaternion.identity, newMaterial, 0);
     }
 
     float GetEnemyAngle()

@@ -12,6 +12,15 @@ class AgentPatrol
     public bool hasSeenPlayer;
     public Vector3 targetDetected;
 
+    private AudioClip tokenGrabClip;
+
+    private AudioSource tokenGrab;
+
+    public AudioSource TokenGrab
+    {
+        get { return tokenGrab; }
+    }
+
     public AgentPatrol(GameObject go, Vector3 src, Vector3 dst)
     {
         this.gameObject = go;
@@ -23,6 +32,9 @@ class AgentPatrol
         SetRotation(dst);
 
         this.hasSeenPlayer = false;
+
+        FieldOfView fov = gameObject.GetComponent<FieldOfView>();
+        this.tokenGrab = AddAudio(fov.tokenGrabClip, false, false, 0.5f);
     }
 
     private void SetRotation(Vector3 target)
@@ -32,6 +44,17 @@ class AgentPatrol
 
         float targetAngle = Vector3.SignedAngle(targetDir, Vector3.forward, -Vector3.up);
         transform.rotation = Quaternion.Euler(0, targetAngle, 0);
+    }
+
+
+    public virtual AudioSource AddAudio(AudioClip clip, bool isLoop, bool isPlayAwake, float vol)
+    {
+        AudioSource newAudio = gameObject.AddComponent<AudioSource>() as AudioSource;
+        newAudio.clip = clip;
+        newAudio.loop = isLoop;
+        newAudio.playOnAwake = isPlayAwake;
+        newAudio.volume = vol;
+        return newAudio;
     }
 
     public State MoveToTarget() {
@@ -67,26 +90,25 @@ class AgentPatrol
 
         if (playerAngle <= fov.angle_fov * 1.25f && playerDist <= fov.dist_max * 1.25f)
         {
-            fov.audioData.Play(0);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, playerDir, playerDist);
             if (!hit) // pas de mur
             {
-                //Debug.Log("test");
                 hasSeenPlayer = true;
                 targetDetected = playerPos - Vector3.Normalize(playerDir);
-                fov.material.SetColor("_Color", Color.red);
+                fov.newMaterial.SetColor("_Color", Color.red);
                 return State.SUCCESS;
             }
         }
 
         hasSeenPlayer = false;
-        fov.material.SetColor("_Color", Color.white);
+        fov.newMaterial.SetColor("_Color", Color.white);
         return State.FAILURE;
     }
     
     public State Fire() {
-            FieldOfView fov = gameObject.GetComponent<FieldOfView>();
-            //fov.material.SetColor("_Color", Color.black);
+        FieldOfView fov = gameObject.GetComponent<FieldOfView>();
+        tokenGrab.PlayOneShot(fov.tokenGrabClip);
+
         return State.SUCCESS;
     }
 

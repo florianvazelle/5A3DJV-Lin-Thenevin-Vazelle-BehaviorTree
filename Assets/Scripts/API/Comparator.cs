@@ -13,7 +13,7 @@ public class Comparator : INode
         nodes = new List<INode>();
     }
 
-    public void AddAction(INode node)
+    public void Add(INode node)
     {
         nodes.Add(node);
     }

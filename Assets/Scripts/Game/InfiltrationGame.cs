@@ -27,18 +27,17 @@ public class InfiltrationGame : MonoBehaviour
             
             /* Utilisation de l'API */
             Sequence detectActionSequence = new Sequence();
-            detectActionSequence.AddAction(new Action(agentsPatrol[i].Detection));
-            detectActionSequence.AddAction(new Action(agentsPatrol[i].MoveToTarget));
-            detectActionSequence.AddAction(new Action(agentsPatrol[i].Fire));
+            detectActionSequence.Add(new Action(agentsPatrol[i].Detection));
+            detectActionSequence.Add(new Action(agentsPatrol[i].MoveToTarget));
+            detectActionSequence.Add(new Delay<Action>(new Action(agentsPatrol[i].Fire)));
 
             Sequence defaultSequence = new Sequence();
-            defaultSequence.AddAction(new Action(agentsPatrol[i].Patrol));
+            defaultSequence.Add(new Action(agentsPatrol[i].Patrol));
 
             rootSelectors.Add(new Selector());
-            rootSelectors[i].AddAction(detectActionSequence);
-            rootSelectors[i].AddAction(defaultSequence);
+            rootSelectors[i].Add(detectActionSequence);
+            rootSelectors[i].Add(defaultSequence);
         }
-        
     }
 
     // Update is called once per frame
