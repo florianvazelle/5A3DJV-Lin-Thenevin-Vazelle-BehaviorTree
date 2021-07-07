@@ -263,13 +263,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 257599655}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 829e4017f39b82eaa8a57d3bcbe5773d, type: 3}
+  m_Script: {fileID: 11500000, guid: f9dea88ac05ecff4981d809844bf4bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agents:
   - agentGO: {fileID: 1891758070}
     animator: {fileID: 1884389018}
-    tokenGrabClip: {fileID: 0}
+    tokenGrabClip: {fileID: 8300000, guid: f6d55511dcac0d4448c27ec38d8b9bb8, type: 3}
   - agentGO: {fileID: 2135691041}
     animator: {fileID: 2145221971}
     tokenGrabClip: {fileID: 8300000, guid: f6d55511dcac0d4448c27ec38d8b9bb8, type: 3}
